@@ -294,11 +294,11 @@ card_wilbiev_welcome_pill_nav:
   tap_action:
     action: >
       [[[
-        if (variables.entity?.tap != "" && states["input_select.minimalist_popup"].state != variables.entity?.tap) return "call-service";
+        if (variables.entity?.tap != "" && states["input_select.minimalist_popup"].state != variables.entity?.tap) return "perform-action";
         return "navigate";
       ]]]
     navigation_path: "[[[ return variables.entity?.nav; ]]]"
-    service: >
+    perform_action: >
       [[[
         if (variables.entity?.tap != "" && states["input_select.minimalist_popup"].state != variables.entity?.tap) return "input_select.select_option";
         return "";
@@ -352,11 +352,11 @@ card_wilbiev_welcome_pill_nav:
         tap_action:
           action: >
             [[[
-              if (variables.entity?.tap != "" && states["input_select.minimalist_popup"].state != variables.entity?.tap) return "call-service";
+              if (variables.entity?.tap != "" && states["input_select.minimalist_popup"].state != variables.entity?.tap) return "perform-action";
               return "navigate";
             ]]]
           navigation_path: "[[[ return variables.entity?.nav; ]]]"
-          service: >
+          perform_action: >
             [[[
               if (variables.entity?.tap != "" && states["input_select.minimalist_popup"].state != variables.entity?.tap) return "input_select.select_option";
               return "";
@@ -409,11 +409,11 @@ card_wilbiev_welcome_pill_nav:
         tap_action:
           action: >
             [[[
-              if (variables.entity?.tap != "" && states["input_select.minimalist_popup"].state != variables.entity?.tap) return "call-service";
+              if (variables.entity?.tap != "" && states["input_select.minimalist_popup"].state != variables.entity?.tap) return "perform-action";
               return "navigate";
             ]]]
           navigation_path: "[[[ return variables.entity?.nav; ]]]"
-          service: >
+          perform_action: >
             [[[
               if (variables.entity?.tap != "" && states["input_select.minimalist_popup"].state != variables.entity?.tap) return "input_select.select_option";
               return "";
@@ -467,9 +467,9 @@ card_wilbiev_welcome_topbar:
         type: "custom:button-card"
         template: "chips"
         tap_action:
-          action: "call-service"
-          service: "input_boolean.toggle"
-          service_data:
+          action: "perform-action"
+          perform_action: "input_boolean.toggle"
+          target:
             entity_id: "[[[ return variables.ulm_card_wilbiev_welcome_collapse ]]]"
         show_icon: true
         icon: "mdi:chevron-up"

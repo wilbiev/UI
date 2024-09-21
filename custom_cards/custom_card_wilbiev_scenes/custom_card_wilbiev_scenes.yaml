@@ -13,6 +13,7 @@ custom_card_wilbiev_scenes:
           return color;
         ]]]
       locked: false
+      hold: ""
     entity_2:
       entity_id: ""
       color: >
@@ -147,6 +148,7 @@ card_wilbiev_scenes_welcome:
           return color;
         ]]]
       locked: false
+      hold: ""
     entity_2:
       entity_id: ""
       color: >
@@ -465,9 +467,9 @@ card_wilbiev_scenes_pill:
               if(variables?.nav_path){
                 return "navigate"
               }
-              return "call-service"
+              return "perform-action"
             ]]]
-          service: >
+          perform_action: >
             [[[
               if(entity?.entity_id.startsWith("scene.")){
                 return "scene.turn_on"
@@ -484,10 +486,10 @@ card_wilbiev_scenes_pill:
               return "homeassistant.toggle"
             ]]]
           navigation_path: "[[[ return variables?.nav_path; ]]]"
-          service_data: |
+          target: |
             [[[
-              if (variables.service_data){
-                return variables.service_data
+              if (variables?.target){
+                return variables?.target
               }
               var obj;
               if(typeof(entity) !== 'undefined' && entity !== undefined){
@@ -532,6 +534,29 @@ card_wilbiev_scenes_pill:
             - box-shadow: "none"
             - border-radius: "50px"
             - padding: "5px"
+        hold_action:
+          action: >
+            [[[
+              if(variables?.hold){
+                return "perform-action"
+              }
+              return "default"
+            ]]]
+          perform_action: >
+            [[[
+              if(variables?.hold){
+                return "input_boolean.toggle"
+              }
+              return ""
+            ]]]
+          target: >
+            [[[
+              var obj;
+              if(variables?.hold){
+                return { entity_id: variables?.hold };
+              }
+              return ""
+            ]]]
         state:
           - operator: "template"
             value: >
@@ -560,10 +585,10 @@ card_wilbiev_scenes_pill:
               if(variables?.nav_path){
                 return "navigate"
               }
-              return "call-service"
+              return "perform-action"
             ]]]
           navigation_path: "[[[ return variables?.nav_path; ]]]"
-          service: >
+          perform_action: >
             [[[
               if(entity?.entity_id.startsWith("scene.")){
                 return "scene.turn_on"
@@ -579,10 +604,10 @@ card_wilbiev_scenes_pill:
               }
               return "homeassistant.toggle"
             ]]]
-          service_data: |
+          target: |
             [[[
-              if (variables.service_data){
-                return variables.service_data
+              if (variables.target){
+                return variables.target
               }
               var obj;
               if(typeof(entity) !== 'undefined' && entity !== undefined){

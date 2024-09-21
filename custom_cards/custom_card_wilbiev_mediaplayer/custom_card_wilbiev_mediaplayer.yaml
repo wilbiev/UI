@@ -400,9 +400,9 @@ custom_card_wilbiev_mediaplayer:
                       template: "popup_media_player_infos"
                       entity: "[[[ return entity.entity_id ]]]"
               tap_action:
-                action: "call-service"
-                service: "media_player.media_previous_track"
-                service_data:
+                action: "perform-action"
+                perform_action: "media_player.media_previous_track"
+                target:
                   entity_id: "[[[ return variables.custom_card_wilbiev_mediaplayer_player_controls_entity ]]]"
               icon: "mdi:skip-previous"
               entity: "[[[ return entity.entity_id ]]]"
@@ -461,9 +461,9 @@ custom_card_wilbiev_mediaplayer:
                       template: "popup_media_player_infos"
                       entity: "[[[ return entity.entity_id; ]]]"
               tap_action:
-                action: "call-service"
-                service: "[[[ return (entity.attributes?.media_duration > 0) ? 'media_player.media_play_pause' : entity.state =='playing' ? 'media_player.media_stop' : 'media_player.media_play']]]"
-                service_data:
+                action: "perform-action"
+                perform_action: "[[[ return (entity.attributes?.media_duration > 0) ? 'media_player.media_play_pause' : entity.state =='playing' ? 'media_player.media_stop' : 'media_player.media_play']]]"
+                target:
                   entity_id: "[[[ return variables.custom_card_wilbiev_mediaplayer_player_controls_entity ]]]"
               icon: "[[[ return (entity.attributes?.media_duration > 0) ? 'mdi:pause' : 'mdi:stop' ]]]"
               state:
@@ -522,7 +522,7 @@ custom_card_wilbiev_mediaplayer:
                       return variables.custom_card_wilbiev_mediaplayer_enable_popup ? "fire-dom-event" : "more-info";
                   ]]]
                 browser_mod:
-                  service: "browser_mod.popup"
+                  perform_action: "browser_mod.popup"
                   data:
                     large: true
                     hide_header: true
@@ -531,9 +531,9 @@ custom_card_wilbiev_mediaplayer:
                       template: "popup_media_player_infos"
                       entity: "[[[ return entity.entity_id; ]]]"
               tap_action:
-                action: "call-service"
-                service: "media_player.media_next_track"
-                service_data:
+                action: "perform-action"
+                perform_action: "media_player.media_next_track"
+                target:
                   entity_id: "[[[ return variables.custom_card_wilbiev_mediaplayer_player_controls_entity ]]]"
               icon: "mdi:skip-next"
               styles:
@@ -729,10 +729,11 @@ custom_card_wilbiev_mediaplayer:
                       template: "popup_media_player_infos"
                       entity: "[[[ return entity.entity_id; ]]]"
               tap_action:
-                action: "call-service"
-                service: "media_player.volume_mute"
-                service_data:
+                action: "perform-action"
+                perform_action: "media_player.volume_mute"
+                target:
                   entity_id: "[[[ return variables.custom_card_wilbiev_mediaplayer_player_controls_entity ]]]"
+                data:
                   is_volume_muted: "[[[ return (states[entity.entity_id].attributes.is_volume_muted) ? false : true; ]]]"
               icon: "mdi:volume-mute"
               styles:
@@ -790,8 +791,8 @@ custom_card_wilbiev_mediaplayer:
                       template: "popup_media_player_infos"
                       entity: "[[[ return entity.entity_id; ]]]"
               tap_action:
-                action: "call-service"
-                service: "media_player.volume_down"
+                action: "perform-action"
+                perform_action: "media_player.volume_down"
                 target:
                   entity_id: "[[[ return variables.custom_card_wilbiev_mediaplayer_player_controls_entity ]]]"
               icon: "mdi:volume-minus"
@@ -850,8 +851,8 @@ custom_card_wilbiev_mediaplayer:
                       template: "popup_media_player_infos"
                       entity: "[[[ return entity.entity_id; ]]]"
               tap_action:
-                action: "call-service"
-                service: "media_player.volume_up"
+                action: "perform-action"
+                perform_action: "media_player.volume_up"
                 target:
                   entity_id: "[[[ return variables.custom_card_wilbiev_mediaplayer_player_controls_entity ]]]"
               icon: "mdi:volume-plus"
