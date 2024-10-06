@@ -61,9 +61,12 @@ custom_card_wilbiev_entities:
           ]]]
         label: >
           [[[
-            let state = states[variables.ulm_custom_card_wilbiev_entities].state
-            if (state.length > 50) state = state.slice(0,50) + '...';
-            return variables["ulm_custom_card_wilbiev_entities_" + state] ? variables["ulm_custom_card_wilbiev_entities_" + state] : variables["ulm_" + state] ? variables["ulm_" + state] : state;
+            if (variables.ulm_custom_card_wilbiev_entities !== undefined) {
+              let state = states[variables.ulm_custom_card_wilbiev_entities].state.toLowerCase()
+              if (state.length > 50) state = state.slice(0,50) + '...';
+              return variables["ulm_custom_card_wilbiev_entities_" + state] ? variables["ulm_custom_card_wilbiev_entities_" + state] : variables["ulm_" + state] ? variables["ulm_" + state] : state;
+            }
+            return ""
           ]]]
     item2:
       card:
@@ -119,18 +122,18 @@ custom_widget_wilbiev:
   label: "[[[ return variables.ulm_translation_state ]]]"
   styles:
     name:
+      - margin-top: "10px"
+      - justify-self: "center"
+      - font-weight: "bold"
+      - font-size: "14px"
+    label:
       - justify-self: "center"
       - align-self: "start"
       - font-weight: "bolder"
       - font-size: "12px"
       - filter: "opacity(40%)"
-    label:
-      - margin-top: "10px"
-      - justify-self: "center"
-      - font-weight: "bold"
-      - font-size: "14px"
     grid:
-      - grid-template-areas: "'l' 'n'"
+      - grid-template-areas: "'n' 'l'"
       - grid-template-columns: "1fr"
       - grid-template-rows: "min-content min-content"
     card:
